@@ -6,6 +6,7 @@ import Layout from "../layout/index.tsx";
 
 export const Home = lazy(() => import("../pages/home.tsx"));
 export const MoviePage = lazy(() => import("../pages/productItem.tsx"));
+export const Favourites = lazy(() => import("../pages/favourites.tsx"));
 export const PageNotFound = lazy(() => import("../pages/pageNotFound.tsx"));
 
 function Router() {
@@ -21,6 +22,7 @@ function Router() {
       children: [
         { path: paths.HOME, element: <Home />, index: true },
         { path: paths.MOVIE, element: <MoviePage /> },
+        { path: paths.FAVOURITES, element: <Favourites /> },
       ],
     },
     {
