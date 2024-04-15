@@ -1,18 +1,32 @@
 import { Box, Button, Rating, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { RootState } from "../store";
 import { Movie } from "../types/Movies";
 import { grey } from "../theme/palette";
+import { addMovie, removeMovie } from "../store/favouritesSlice";
 
 function ProductItem() {
   const { id } = useParams<{ id: string | undefined }>();
+  const dispatch = useDispatch();
 
   const movie = useSelector<RootState, Movie | undefined>((state) =>
     id
       ? state.movies.movies.find((movie) => movie.id === parseInt(id))
       : undefined
   );
+
+  const isFavorite = useSelector<RootState, boolean>((state) =>
+    state.favorites.movies.some((favorite) => movie && favorite.id === movie.id)
+  );
+
+  const handleToggleFavorite = () => {
+    if (movie && !isFavorite) {
+      dispatch(addMovie(movie));
+    } else if (movie && isFavorite) {
+      dispatch(removeMovie(movie.id));
+    }
+  };
 
   if (!movie) {
     return <div>Loading...</div>;
@@ -79,6 +93,9 @@ function ProductItem() {
         <Typography>
           <strong>Description:</strong> {movie.description}
         </Typography>
+        <Button onClick={handleToggleFavorite} color={isFavorite ? "error" : "primary"}>
+          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        </Button>
       </Box>
     </Box>
   );
