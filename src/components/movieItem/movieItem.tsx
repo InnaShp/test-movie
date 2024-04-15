@@ -11,14 +11,23 @@ import {
 import { Movie } from "../../types/Movies";
 import { Link } from "react-router-dom";
 
-export default function MovieItem(props: { movie: Movie }) {
-  const { movie } = props;
+interface MovieItemProps {
+  movie: Movie;
+  isFavorite?: boolean;
+  onToggleFavorite?: (movie: Movie) => void;
+}
+
+export default function MovieItem({
+  movie,
+  isFavorite,
+  onToggleFavorite,
+}: MovieItemProps) {
   const releaseYear = new Date(movie.release_date).getFullYear();
   const trimmedTitle =
     movie.title.length > 25
       ? movie.title.substring(0, 25) + "..."
       : movie.title;
-
+      
   return (
     <Card sx={{ width: "300px", height: "560px", margin: "0 auto" }}>
       <CardContent>
@@ -39,7 +48,7 @@ export default function MovieItem(props: { movie: Movie }) {
         <Box display={"flex"} gap={"10px"} alignItems={"center"}>
           <Rating
             name="read-only"
-            value={props.movie.rating}
+            value={movie.rating}
             readOnly
             precision={0.2}
             max={10}
@@ -51,6 +60,12 @@ export default function MovieItem(props: { movie: Movie }) {
         <Link to={`/movies/${movie.id}`} style={{ textDecoration: "none" }}>
           <Button color="primary">Read more</Button>
         </Link>
+        <Button
+          color={isFavorite ? "error" : "primary"}
+          onClick={() => onToggleFavorite && onToggleFavorite(movie)}
+        >
+          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        </Button>
       </CardActions>
     </Card>
   );
