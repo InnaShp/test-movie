@@ -4,7 +4,7 @@ import Main from "./main";
 import Sidebar from "./sidebar";
 import { Grid } from "@mui/material";
 
-//import ScrollToTopButton from "../components/ScrollToTopButton";
+import ToTopButton from "../components/toTopButton/toToButton";
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,7 +22,7 @@ function Layout({ children }: LayoutProps) {
         </Grid>
       </Grid>
 
-      {/* <ScrollToTopButton /> */}
+      <ToTopButton />
     </>
   );
 }

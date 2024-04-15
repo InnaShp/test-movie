@@ -14,12 +14,6 @@ function ProductItem() {
       : undefined
   );
 
-  let releaseYear: number | undefined;
-
-  if (movie) {
-    releaseYear = new Date(movie.release_date).getFullYear();
-  }
-
   if (!movie) {
     return <div>Loading...</div>;
   }
@@ -62,9 +56,9 @@ function ProductItem() {
           maxWidth: "500px",
         }}
       >
-        <Typography variant="h1">{movie.title}</Typography>
+        <Typography variant="h2">{movie.title}</Typography>
         <Typography variant="body1" fontStyle={"italic"}>
-          {movie.genre.join("/")}/{releaseYear}
+          {movie.genre.join("/")}
         </Typography>
         <Box display={"flex"} gap={"10px"} alignItems={"center"}>
           <Rating
