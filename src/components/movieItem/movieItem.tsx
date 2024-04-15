@@ -9,13 +9,18 @@ import {
   Typography,
 } from "@mui/material";
 import { Movie } from "../../types/Movies";
+import { Link } from "react-router-dom";
 
 export default function MovieItem(props: { movie: Movie }) {
   const { movie } = props;
   const releaseYear = new Date(movie.release_date).getFullYear();
+  const trimmedTitle =
+    movie.title.length > 25
+      ? movie.title.substring(0, 25) + "..."
+      : movie.title;
 
   return (
-    <Card sx={{ maxWidth: "300px", margin: "0 auto" }}>
+    <Card sx={{ width: "300px", height: "560px", margin: "0 auto" }}>
       <CardContent>
         <CardMedia
           component="img"
@@ -29,7 +34,7 @@ export default function MovieItem(props: { movie: Movie }) {
             marginBottom: "10px",
           }}
         />
-        <Typography variant="h6">{movie.title}</Typography>
+        <Typography variant="h6">{trimmedTitle}</Typography>
         <Typography variant="body2">{releaseYear}</Typography>
         <Box display={"flex"} gap={"10px"} alignItems={"center"}>
           <Rating
@@ -42,8 +47,10 @@ export default function MovieItem(props: { movie: Movie }) {
           <Typography variant="body2">{movie.rating}</Typography>
         </Box>
       </CardContent>
-      <CardActions>
-        <Button color="primary">Read more</Button>
+      <CardActions sx={{ paddingTop: "0" }}>
+        <Link to={`/movies/${movie.id}`} style={{ textDecoration: "none" }}>
+          <Button color="primary">Read more</Button>
+        </Link>
       </CardActions>
     </Card>
   );

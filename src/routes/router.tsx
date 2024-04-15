@@ -5,7 +5,7 @@ import { paths } from "../config/paths.ts";
 import Layout from "../layout/index.tsx";
 
 export const Home = lazy(() => import("../pages/home.tsx"));
-export const ProductPage = lazy(() => import("../pages/productItem.tsx"));
+export const MoviePage = lazy(() => import("../pages/productItem.tsx"));
 export const PageNotFound = lazy(() => import("../pages/pageNotFound.tsx"));
 
 function Router() {
@@ -20,7 +20,7 @@ function Router() {
       ),
       children: [
         { path: paths.HOME, element: <Home />, index: true },
-        { path: paths.PRODUCT, element: <ProductPage /> },
+        { path: paths.MOVIE, element: <MoviePage /> },
       ],
     },
     {
