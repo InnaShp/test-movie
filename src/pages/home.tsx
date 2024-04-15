@@ -1,14 +1,16 @@
+import SearchBox from "../components/search";
+
 export default function HomePage() {
 
   return (
     <>
 
-      пошук
+      <SearchBox />
 
       заголовок
 
       список фільмів
-      
+
     </>
   );
 }
