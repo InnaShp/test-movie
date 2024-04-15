@@ -3,7 +3,12 @@ export default function HomePage() {
   return (
     <>
 
-      Home
+      пошук
+
+      заголовок
+
+      список фільмів
+      
     </>
   );
 }

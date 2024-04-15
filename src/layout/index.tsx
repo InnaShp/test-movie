@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 
 import Main from "./main";
+import Sidebar from "./sidebar";
+import { Grid } from "@mui/material";
 
 //import ScrollToTopButton from "../components/ScrollToTopButton";
 
@@ -11,7 +13,14 @@ interface LayoutProps {
 function Layout({ children }: LayoutProps) {
   return (
     <>
-      <Main>{children}</Main>
+      <Grid container>
+        <Grid item xs={3}>
+          <Sidebar />
+        </Grid>
+        <Grid item xs={9}>
+          <Main>{children}</Main>
+        </Grid>
+      </Grid>
 
       {/* <ScrollToTopButton /> */}
     </>
