@@ -1,16 +1,19 @@
 import Input from "@mui/material/Input";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
+import { grey } from "../../theme/palette";
 
 import SearchIcon from '@mui/icons-material/Search';
 
 const StyledSearchBox = styled("div")(() => ({
-  width: "100%",
+  width: "70%",
   position: "relative",
   display: "flex",
   alignItems: "center",
   height: "40px",
   borderRadius: "8px",
+  backgroundColor: "white",
+  border: `2px solid ${grey[300]}`
 }));
 
 export default function SearchBox() {
@@ -34,8 +37,7 @@ export default function SearchBox() {
           lineHeight: "24px",
           fontSize: "16px",
           position: "absolute",
-          left: "42px",
-          top: "5px",
+          left: "50px",
         }}
       />
     </StyledSearchBox>
