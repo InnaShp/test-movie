@@ -9,7 +9,11 @@ import { addMovie } from "../store/moviesSlice";
 import { Movie } from "../types/Movies";
 import { paths } from "../config/paths";
 
-export default function Sidebar() {
+interface SidebarProps {
+  closeSidebar?: () => void;
+}
+
+export default function Sidebar({ closeSidebar }: SidebarProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -51,12 +55,20 @@ export default function Sidebar() {
           />
         </Button>
       </Link>
-      <Link to={paths.HOME} style={{ textDecoration: "none" }}>
+      <Link
+        to={paths.HOME}
+        style={{ textDecoration: "none" }}
+        onClick={closeSidebar}
+      >
         <Typography variant="h4" color={"primary"} textAlign={"center"}>
           Home
         </Typography>
       </Link>
-      <Link to={paths.FAVOURITES} style={{ textDecoration: "none" }}>
+      <Link
+        to={paths.FAVOURITES}
+        style={{ textDecoration: "none" }}
+        onClick={closeSidebar}
+      >
         <Typography variant="h4" color={"primary"} textAlign={"center"}>
           Favourites💙
         </Typography>

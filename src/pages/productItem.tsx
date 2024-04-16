@@ -55,13 +55,13 @@ function ProductItem() {
       sx={{
         backgroundColor: grey[300],
         minHeight: "100vh",
-        padding: "100px",
+        padding: { xs: "50px", md: "100px" },
       }}
     >
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: { xs: "column", md: "row" },
           gap: "60px",
           justifyContent: "center",
         }}
@@ -69,10 +69,11 @@ function ProductItem() {
         <Box
           component="img"
           sx={{
-            height: 600,
+            maxHeight: 600,
+            minHeight: 400,
             width: "auto",
-            boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
             borderRadius: "5px",
+            objectFit: "contain",
           }}
           src={movie.image}
           alt={movie.title}
@@ -81,7 +82,7 @@ function ProductItem() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: "30px",
+            gap: { xs: "10px", md: "30px" },
             maxWidth: "500px",
           }}
         >

@@ -21,6 +21,8 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
     release_date: "",
   });
 
+  const [isFormValid, setIsFormValid] = useState(false);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     const newValue = name === "rating" ? parseFloat(value) : value;
@@ -29,6 +31,9 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
       ...prevMovie,
       [name]: newValue,
     }));
+
+    const areAllFieldsFilled = Object.values(newMovie).every((val) => val !== "");
+    setIsFormValid(areAllFieldsFilled);
   };
 
   const handleSave = () => {
@@ -69,6 +74,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
         }}
       >
         <TextField
+          required
           name="title"
           label="Title"
           value={newMovie.title}
@@ -77,6 +83,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
           margin="normal"
         />
         <TextField
+          required
           name="genre"
           label="Жанр"
           value={newMovie?.genre}
@@ -85,6 +92,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
           margin="normal"
         />
         <TextField
+          required
           name="rating"
           label="Rating"
           value={newMovie.rating}
@@ -94,6 +102,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
           type="number"
         />
         <TextField
+          required
           name="release_date"
           label="Date"
           value={newMovie.release_date}
@@ -102,6 +111,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
           margin="normal"
         />
         <TextField
+          required
           name="director"
           label="Director"
           value={newMovie.director}
@@ -110,6 +120,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
           margin="normal"
         />
         <TextField
+          required
           name="actors"
           label="The cast"
           value={newMovie?.actors}
@@ -118,6 +129,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
           margin="normal"
         />
         <TextField
+          required
           name="description"
           label="Description"
           value={newMovie.description}
@@ -128,6 +140,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
           rows={5}
         />
         <TextField
+          required
           name="image"
           label="Image"
           value={newMovie.image}
@@ -137,6 +150,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
         />
         <Button
           onClick={handleSave}
+          disabled={!isFormValid}
           variant="contained"
           color="primary"
           sx={{ width: "150px", height: "40px", fontSize: "16px", mt: 5 }}

@@ -26,10 +26,10 @@ export default function MovieList() {
   }
 
   return (
-    <Box>
-      <Grid container spacing={2}>
+    <Box padding={4}>
+      <Grid container spacing={3}>
         {filteredMovies.map((item: Movie) => (
-          <Grid item xs={12} sm={6} lg={4} key={item.id}>
+          <Grid item xs={12} md={6} lg={4} key={item.id}>
             <MovieItem
               movie={item}
               isFavorite={isFavorite(item)}

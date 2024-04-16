@@ -21,7 +21,7 @@ export default function Favourites() {
       <Typography variant="h1">Favourites</Typography>
       <Grid container spacing={2}>
         {favoriteMovies.map((item: Movie) => (
-          <Grid item xs={12} sm={6} md={4} key={item.id}>
+          <Grid item xs={12} md={6} lg={4} key={item.id}>
             <MovieItem 
               movie={item} 
               isFavorite={isFavorite(item)} 

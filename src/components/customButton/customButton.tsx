@@ -13,7 +13,8 @@ export default function CustomButton({ text, onClick }: CustomButtonProps) {
         backgroundColor: primary.light,
         color: "white",
         height: "50px",
-        width: "270px",
+        maxWidth: "300px",
+        minWidth: "200px",
         fontSize: "17px",
         "&:hover": {
           backgroundColor: primary.main,
