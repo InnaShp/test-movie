@@ -9,7 +9,7 @@ export function useFavorites() {
 
   const isFavorite = (movie: Movie) => {
     return favoriteMovies.some((favorite) => favorite.id === movie.id);
-  }; 
+  };
 
   const toggleFavorite = (movie: Movie) => {
     if (isFavorite(movie)) {

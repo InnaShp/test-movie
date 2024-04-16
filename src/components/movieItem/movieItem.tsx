@@ -11,6 +11,9 @@ import {
 import { Movie } from "../../types/Movies";
 import { Link } from "react-router-dom";
 
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 interface MovieItemProps {
   movie: Movie;
   isFavorite?: boolean;
@@ -27,7 +30,7 @@ export default function MovieItem({
     movie.title.length > 25
       ? movie.title.substring(0, 25) + "..."
       : movie.title;
-      
+
   return (
     <Card sx={{ width: "300px", height: "560px", margin: "0 auto" }}>
       <CardContent>
@@ -56,7 +59,7 @@ export default function MovieItem({
           <Typography variant="body2">{movie.rating}</Typography>
         </Box>
       </CardContent>
-      <CardActions sx={{ paddingTop: "0" }}>
+      <CardActions sx={{ paddingTop: "0", display:"flex", justifyContent: "space-between" }}>
         <Link to={`/movies/${movie.id}`} style={{ textDecoration: "none" }}>
           <Button color="primary">Read more</Button>
         </Link>
@@ -64,7 +67,7 @@ export default function MovieItem({
           color={isFavorite ? "error" : "primary"}
           onClick={() => onToggleFavorite && onToggleFavorite(movie)}
         >
-          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </Button>
       </CardActions>
     </Card>

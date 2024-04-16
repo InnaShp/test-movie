@@ -6,9 +6,11 @@ import { paths } from "../config/paths";
 import CustomButton from "../components/customButton/customButton";
 
 export default function Sidebar() {
+
   const handleClick = () => {
     alert("Click!");
   };
+  
   return (
     <Box
       sx={{
@@ -20,11 +22,11 @@ export default function Sidebar() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "50px",
+        gap: "30px",
       }}
     >
       <Link to={paths.HOME}>
-        <Button sx={{borderRadius: "50%", padding: "0"}} color="info">
+        <Button sx={{ borderRadius: "50%", padding: "0" }} color="info">
           <img
             src="https://i.pinimg.com/564x/a9/f9/a8/a9f9a83bb6ea2585c9845fd78fc35994.jpg"
             alt="Logo"
@@ -35,17 +37,17 @@ export default function Sidebar() {
           />
         </Button>
       </Link>
+      <Link to={paths.HOME} style={{ textDecoration: "none" }}>
+        <Typography variant="h4" color={"primary"} textAlign={"center"}>
+          Home
+        </Typography>
+      </Link>
       <Link to={paths.FAVOURITES} style={{ textDecoration: "none" }}>
         <Typography variant="h4" color={"primary"} textAlign={"center"}>
           Favourites💙
         </Typography>
       </Link>
-      <Box display={"flex"} flexDirection={"column"} gap={"15px"}>
-        <CustomButton text="Add new movie" onClick={handleClick} />
-        <CustomButton text="Edit movie" onClick={handleClick} />
-        <CustomButton text="Delete movie" onClick={handleClick} />
-        <CustomButton text="Add to favourites" onClick={handleClick} />
-      </Box>
+      <CustomButton text="Add new movie" onClick={handleClick} />
     </Box>
   );
 }
