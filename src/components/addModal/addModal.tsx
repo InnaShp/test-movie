@@ -71,6 +71,8 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
           maxWidth: 500,
           width: "90%",
           borderRadius: 4,
+          maxHeight: "90vh", 
+          overflowY: "auto", 
         }}
       >
         <TextField
