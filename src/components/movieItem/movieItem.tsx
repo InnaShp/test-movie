@@ -19,13 +19,13 @@ interface MovieItemProps {
   isFavorite?: boolean;
   onToggleFavorite?: (movie: Movie) => void;
 }
-
 export default function MovieItem({
   movie,
   isFavorite,
   onToggleFavorite,
 }: MovieItemProps) {
   const releaseYear = new Date(movie.release_date).getFullYear();
+
   const trimmedTitle =
     movie.title.length > 25
       ? movie.title.substring(0, 25) + "..."

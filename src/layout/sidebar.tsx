@@ -1,16 +1,30 @@
 import { Link } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import { grey } from "../theme/palette";
-
-import { paths } from "../config/paths";
 import CustomButton from "../components/customButton/customButton";
+import AddModal from "../components/addModal/addModal";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addMovie } from "../store/moviesSlice";
+import { Movie } from "../types/Movies";
+import { paths } from "../config/paths";
 
 export default function Sidebar() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleClick = () => {
-    alert("Click!");
+  const handleAdd = () => {
+    setIsModalOpen(true);
   };
-  
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSaveEdit = (newMovie: Movie) => {
+    dispatch(addMovie(newMovie));
+  };
+
   return (
     <Box
       sx={{
@@ -47,7 +61,12 @@ export default function Sidebar() {
           Favourites💙
         </Typography>
       </Link>
-      <CustomButton text="Add new movie" onClick={handleClick} />
+      <CustomButton text="Add new movie" onClick={handleAdd} />
+      <AddModal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        onSave={handleSaveEdit}
+      />
     </Box>
   );
 }

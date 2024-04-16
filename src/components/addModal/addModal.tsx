@@ -1,50 +1,58 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Box, TextField, Button } from "@mui/material";
 import { Movie } from "../../types/Movies";
 
-interface EditModalProps {
+interface AddModalProps {
   isOpen: boolean;
   onClose: () => void;
-  movie?: Movie;
-  onSave: (updatedMovie: Movie) => void;
+  onSave: (newMovie: Movie) => void;
 }
 
-const EditModal: React.FC<EditModalProps> = ({
-  isOpen,
-  onClose,
-  movie,
-  onSave,
-}) => {
-  const [editedMovie, setEditedMovie] = useState<Movie | undefined>(movie);
-
-  useEffect(() => {
-    setEditedMovie(movie);
-  }, [movie]);
+const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
+  const [newMovie, setNewMovie] = useState<Movie>({
+    id: 0,
+    title: "",
+    genre: [],
+    rating: 0,
+    director: "",
+    actors: [],
+    description: "",
+    image: "",
+    release_date: new Date().toISOString(),
+  });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     const newValue = name === "rating" ? parseFloat(value) : value;
 
-    if (editedMovie) {
-      setEditedMovie({
-        ...editedMovie,
-        [name]: newValue,
-      });
-    }
+    setNewMovie((prevMovie) => ({
+      ...prevMovie,
+      [name]: newValue,
+    }));
   };
 
   const handleSave = () => {
-    if (editedMovie) {
-      onSave(editedMovie);
-    }
+    onSave(newMovie);
+    onClose();
+    setNewMovie({
+      id: 0,
+      title: "",
+      genre: [],
+      rating: 0,
+      director: "",
+      actors: [],
+      description: "",
+      image: "",
+      release_date: new Date().toISOString(),
+    });
   };
 
   return (
     <Modal
       open={isOpen}
       onClose={onClose}
-      aria-labelledby="edit-modal-title"
-      aria-describedby="edit-modal-description"
+      aria-labelledby="add-modal-title"
+      aria-describedby="add-modal-description"
     >
       <Box
         sx={{
@@ -63,7 +71,7 @@ const EditModal: React.FC<EditModalProps> = ({
         <TextField
           name="title"
           label="Title"
-          value={editedMovie?.title || ""}
+          value={newMovie.title}
           onChange={handleChange}
           fullWidth
           margin="normal"
@@ -71,24 +79,24 @@ const EditModal: React.FC<EditModalProps> = ({
         <TextField
           name="genre"
           label="Жанр"
-          value={editedMovie?.genre || ""}
+          value={newMovie?.genre || ""}
           onChange={handleChange}
           fullWidth
           margin="normal"
         />
-
         <TextField
           name="rating"
           label="Rating"
-          value={editedMovie?.rating || ""}
+          value={newMovie.rating}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          type="number"
         />
         <TextField
           name="director"
           label="Director"
-          value={editedMovie?.director || ""}
+          value={newMovie.director}
           onChange={handleChange}
           fullWidth
           margin="normal"
@@ -96,7 +104,7 @@ const EditModal: React.FC<EditModalProps> = ({
         <TextField
           name="actors"
           label="The cast"
-          value={editedMovie?.actors || ""}
+          value={newMovie?.actors || ""}
           onChange={handleChange}
           fullWidth
           margin="normal"
@@ -104,7 +112,7 @@ const EditModal: React.FC<EditModalProps> = ({
         <TextField
           name="description"
           label="Description"
-          value={editedMovie?.description || ""}
+          value={newMovie.description}
           onChange={handleChange}
           fullWidth
           margin="normal"
@@ -114,12 +122,11 @@ const EditModal: React.FC<EditModalProps> = ({
         <TextField
           name="image"
           label="Image"
-          value={editedMovie?.image || ""}
+          value={newMovie.image}
           onChange={handleChange}
           fullWidth
           margin="normal"
         />
-
         <Button
           onClick={handleSave}
           variant="contained"
@@ -133,4 +140,4 @@ const EditModal: React.FC<EditModalProps> = ({
   );
 };
 
-export default EditModal;
+export default AddModal;
