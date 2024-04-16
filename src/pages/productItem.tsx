@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Rating, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -15,6 +16,7 @@ import EditModal from "../components/editModal/editModal";
 function ProductItem() {
   const { id } = useParams<{ id: string | undefined }>();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const movie = useSelector<RootState, Movie | undefined>((state) =>
     id
@@ -41,6 +43,7 @@ function ProductItem() {
     if (id) {
       dispatch(deleteMovie(parseInt(id)));
     }
+    navigate(-1);
   };
 
   if (!movie) {
@@ -101,7 +104,10 @@ function ProductItem() {
             <strong>Director:</strong> {movie.director}
           </Typography>
           <Typography>
-            <strong>The cast:</strong> {movie.actors.join(", ")}
+            <strong>The cast:</strong>{" "}
+            {Array.isArray(movie.actors)
+              ? movie.actors.join(", ")
+              : movie.actors}
           </Typography>
           <Typography>
             <strong>Description:</strong> {movie.description}

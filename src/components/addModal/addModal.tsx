@@ -18,7 +18,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
     actors: [],
     description: "",
     image: "",
-    release_date: new Date().toISOString(),
+    release_date: "",
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +43,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
       actors: [],
       description: "",
       image: "",
-      release_date: new Date().toISOString(),
+      release_date: "",
     });
   };
 
@@ -79,7 +79,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
         <TextField
           name="genre"
           label="Жанр"
-          value={newMovie?.genre || ""}
+          value={newMovie?.genre}
           onChange={handleChange}
           fullWidth
           margin="normal"
@@ -94,6 +94,14 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
           type="number"
         />
         <TextField
+          name="release_date"
+          label="Date"
+          value={newMovie.release_date}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+        />
+        <TextField
           name="director"
           label="Director"
           value={newMovie.director}
@@ -104,7 +112,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
         <TextField
           name="actors"
           label="The cast"
-          value={newMovie?.actors || ""}
+          value={newMovie?.actors}
           onChange={handleChange}
           fullWidth
           margin="normal"
