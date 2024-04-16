@@ -17,7 +17,7 @@ export default function MovieList() {
 
   if (filteredMovies.length === 0) {
     return (
-      <Box>
+      <Box padding={"0 30px"} textAlign={"center"}>
         <Typography variant="h3">
           Oops, no movies found matching your search 🥲
         </Typography>

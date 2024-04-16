@@ -55,7 +55,7 @@ function ProductItem() {
       sx={{
         backgroundColor: grey[300],
         minHeight: "100vh",
-        padding: { xs: "50px", md: "100px" },
+        padding: { xs: "100px 50px", md: "100px" },
       }}
     >
       <Box
