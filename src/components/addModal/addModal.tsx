@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Modal, Box, TextField, Button } from "@mui/material";
-import { Movie } from "../../types/Movies";
+import { NewMovie } from "../../types/Movies";
+import { validate } from "../../helper/validateInput";
 
 interface AddModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (newMovie: Movie) => void;
+  onSave: (newMovie: NewMovie) => void;
 }
 
 const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
-  const [newMovie, setNewMovie] = useState<Movie>({
-    id: 0,
+  const [newMovie, setNewMovie] = useState<NewMovie>({
     title: "",
     genre: [],
     rating: 0,
@@ -21,35 +21,37 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
     release_date: "",
   });
 
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const getFieldValue = (field: keyof NewMovie) => newMovie?.[field] || "";
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     const newValue = name === "rating" ? parseFloat(value) : value;
-
     setNewMovie((prevMovie) => ({
       ...prevMovie,
       [name]: newValue,
     }));
-
-    const areAllFieldsFilled = Object.values(newMovie).every((val) => val !== "");
-    setIsFormValid(areAllFieldsFilled);
   };
 
   const handleSave = () => {
-    onSave(newMovie);
-    onClose();
-    setNewMovie({
-      id: 0,
-      title: "",
-      genre: [],
-      rating: 0,
-      director: "",
-      actors: [],
-      description: "",
-      image: "",
-      release_date: "",
-    });
+    const newErrors = validate(newMovie);
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0 && newMovie) {
+      onSave(newMovie);
+      onClose();
+      setNewMovie({
+        title: "",
+        genre: [],
+        rating: 0,
+        director: "",
+        actors: [],
+        description: "",
+        image: "",
+        release_date: "",
+      });
+    }
   };
 
   return (
@@ -71,88 +73,104 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
           maxWidth: 500,
           width: "90%",
           borderRadius: 4,
-          maxHeight: "90vh", 
-          overflowY: "auto", 
+          maxHeight: "90vh",
+          overflowY: "auto",
         }}
       >
-        <TextField
+                <TextField
           required
           name="title"
           label="Title"
-          value={newMovie.title}
+          value={getFieldValue("title")}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          error={!!errors.title}
+          helperText={errors.title}
         />
         <TextField
           required
           name="genre"
           label="Жанр"
-          value={newMovie?.genre}
+          value={getFieldValue("genre")}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          error={!!errors.genre}
+          helperText={errors.genre}
         />
         <TextField
           required
           name="rating"
           label="Rating"
-          value={newMovie.rating}
+          value={getFieldValue("rating")}
           onChange={handleChange}
           fullWidth
           margin="normal"
           type="number"
+          error={!!errors.rating}
+          helperText={errors.rating}
         />
         <TextField
           required
           name="release_date"
-          label="Date"
-          value={newMovie.release_date}
+          value={getFieldValue("release_date")}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          type="date"
+          error={!!errors.release_date}
+          helperText={errors.release_date}
         />
         <TextField
           required
           name="director"
           label="Director"
-          value={newMovie.director}
+          value={getFieldValue("director")}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          error={!!errors.director}
+          helperText={errors.director}
         />
         <TextField
           required
           name="actors"
-          label="The cast"
-          value={newMovie?.actors}
+          label="The Cast"
+          value={getFieldValue("actors")}
           onChange={handleChange}
           fullWidth
           margin="normal"
-        />
-        <TextField
-          required
-          name="description"
-          label="Description"
-          value={newMovie.description}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-          multiline
-          rows={5}
+          error={!!errors.actors}
+          helperText={errors.actors}
         />
         <TextField
           required
           name="image"
           label="Image"
-          value={newMovie.image}
+          value={getFieldValue("image")}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          error={!!errors.image}
+          helperText={errors.image}
         />
+        <TextField
+          required
+          name="description"
+          label="Description"
+          value={getFieldValue("description")}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          multiline
+          rows={5}
+          error={!!errors.description}
+          helperText={errors.description}
+        />
+
         <Button
           onClick={handleSave}
-          disabled={!isFormValid}
           variant="contained"
           color="primary"
           sx={{ width: "150px", height: "40px", fontSize: "16px", mt: 5 }}

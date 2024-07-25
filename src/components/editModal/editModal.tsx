@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Box, TextField, Button } from "@mui/material";
 import { Movie } from "../../types/Movies";
+import { validate } from "../../helper/validateInput";
 
 interface EditModalProps {
   isOpen: boolean;
@@ -27,7 +28,7 @@ const EditModal: React.FC<EditModalProps> = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     const newValue = name === "rating" ? parseFloat(value) : value;
-    
+
     if (editedMovie) {
       setEditedMovie({
         ...editedMovie,
@@ -36,19 +37,11 @@ const EditModal: React.FC<EditModalProps> = ({
     }
   };
 
-  const validate = (): boolean => {
-    const newErrors: { [key: string]: string } = {};
-
-    if (!editedMovie?.title) newErrors.title = "Title is required";
-    if (!editedMovie?.rating || editedMovie.rating < 0 || editedMovie.rating > 10)
-      newErrors.rating = "Rating must be between 0 and 10";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleSave = () => {
-    if (validate() && editedMovie) {
+    const newErrors = validate(editedMovie);
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0 && editedMovie) {
       onSave(editedMovie);
     }
   };
@@ -72,14 +65,15 @@ const EditModal: React.FC<EditModalProps> = ({
           maxWidth: 500,
           width: "90%",
           borderRadius: 4,
-          maxHeight: "90vh", 
-          overflowY: "auto", 
+          maxHeight: "90vh",
+          overflowY: "auto",
         }}
       >
         <TextField
+          required
           name="title"
           label="Title"
-          value={getFieldValue('title')}
+          value={getFieldValue("title")}
           onChange={handleChange}
           fullWidth
           margin="normal"
@@ -87,59 +81,87 @@ const EditModal: React.FC<EditModalProps> = ({
           helperText={errors.title}
         />
         <TextField
+          required
           name="genre"
           label="Жанр"
-          value={getFieldValue('genre')}
+          value={getFieldValue("genre")}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          error={!!errors.genre}
+          helperText={errors.genre}
         />
-
         <TextField
+          required
           name="rating"
           label="Rating"
-          value={getFieldValue('rating')}
+          value={getFieldValue("rating")}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          type="number"
           error={!!errors.rating}
           helperText={errors.rating}
         />
         <TextField
+          required
+          name="release_date"
+          label="Release Date"
+          value={getFieldValue("release_date")}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          type="date"
+          error={!!errors.release_date}
+          helperText={errors.release_date}
+        />
+        <TextField
+          required
           name="director"
           label="Director"
-          value={getFieldValue('director')}
+          value={getFieldValue("director")}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          error={!!errors.director}
+          helperText={errors.director}
         />
         <TextField
+          required
           name="actors"
-          label="The cast"
-          value={getFieldValue('actors')}
+          label="The Cast"
+          value={getFieldValue("actors")}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          error={!!errors.actors}
+          helperText={errors.actors}
         />
         <TextField
+          required
           name="image"
           label="Image"
-          value={getFieldValue('image')}
+          value={getFieldValue("image")}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          error={!!errors.image}
+          helperText={errors.image}
         />
         <TextField
+          required
           name="description"
           label="Description"
-          value={getFieldValue('description')}
+          value={getFieldValue("description")}
           onChange={handleChange}
           fullWidth
           margin="normal"
           multiline
           rows={5}
+          error={!!errors.description}
+          helperText={errors.description}
         />
-        
+
         <Button
           onClick={handleSave}
           variant="contained"

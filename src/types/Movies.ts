@@ -1,5 +1,4 @@
-export interface Movie {
-  id: number;
+export interface BaseMovie {
   title: string;
   description: string;
   rating: number;
@@ -9,3 +8,9 @@ export interface Movie {
   director: string;
   image: string;
 }
+
+export interface Movie extends BaseMovie {
+  id: string;
+}
+
+export interface NewMovie extends BaseMovie {}

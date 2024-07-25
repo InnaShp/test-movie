@@ -30,7 +30,7 @@ function ProductItem() {
   };
 
   const handleSaveEdit = (updatedMovie: Movie) => {
-    editMovie(updatedMovie).then(() => handleModalClose());
+    editMovie(updatedMovie).then(handleModalClose);
   };
 
   const handleDelete = () => {
