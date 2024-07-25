@@ -43,13 +43,25 @@ export const movieApi = createApi({
       invalidatesTags: (result, error, id) => [{ type: 'Movies', id }],
     }),
 
-    updateMovie: build.mutation<Movie, Partial<Movie>>({
+    updateMovie: build.mutation<void, Pick<Movie, 'id'> & Partial<Movie>>({
       query(data) {
         const { id, ...body } = data
         return {
           url: `movies/${id}`,
           method: 'PUT',
           body
+        }
+      },
+      async onQueryStarted({ id, ...body }, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          movieApi.util.updateQueryData('getMovieById', id, (draft) => {
+            Object.assign(draft, body)
+          })
+        )
+        try {
+          await queryFulfilled
+        } catch {
+          patchResult.undo()
         }
       },
       invalidatesTags: (result, error, { id }) => [{ type: 'Movies', id }]

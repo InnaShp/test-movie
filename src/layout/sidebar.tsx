@@ -4,10 +4,9 @@ import { grey } from "../theme/palette";
 import CustomButton from "../components/customButton/customButton";
 import AddModal from "../components/addModal/addModal";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addMovie } from "../store/moviesSlice";
-import { Movie } from "../types/Movies";
+import { NewMovie } from "../types/Movies";
 import { paths } from "../config/paths";
+import { useAddMovieMutation } from "../rtk/api";
 
 interface SidebarProps {
   closeSidebar?: () => void;
@@ -15,18 +14,14 @@ interface SidebarProps {
 
 export default function Sidebar({ closeSidebar }: SidebarProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch();
-
-  const handleAdd = () => {
-    setIsModalOpen(true);
-  };
+  const [addMovie] = useAddMovieMutation()
 
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
 
-  const handleSaveEdit = (newMovie: Movie) => {
-    dispatch(addMovie(newMovie));
+  const handleSaveEdit = (newMovie: NewMovie) => {
+    addMovie(newMovie).then(handleModalClose);
   };
 
   return (
@@ -73,7 +68,7 @@ export default function Sidebar({ closeSidebar }: SidebarProps) {
           Favourites💙
         </Typography>
       </Link>
-      <CustomButton text="Add new movie" onClick={handleAdd} />
+      <CustomButton text="Add new movie" onClick={() => setIsModalOpen(true)} />
       <AddModal
         isOpen={isModalOpen}
         onClose={handleModalClose}

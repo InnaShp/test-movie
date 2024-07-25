@@ -219,23 +219,15 @@
       "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Goodfellas.jpg"
     },
     {
-      "id": "14",
-      "title": "The Lord of the Rings: The Two Towers",
+      "title": "eg`rhs`w",
       "description": "While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron's new ally, Saruman, and his hordes of Isengard.",
-      "rating": 8.7,
+      "rating": 10,
       "release_date": "2002-12-18",
-      "genre": [
-        "action",
-        "adventure",
-        "drama"
-      ],
-      "actors": [
-        "Elijah Wood",
-        "Ian McKellen",
-        "Viggo Mortensen"
-      ],
+      "genre": "crime, drama",
+      "actors": "John Travolta, Uma Thurman, Samuel L. Jackson",
       "director": "Peter Jackson",
-      "image": "https://m.media-amazon.com/images/M/MV5BZTUxNzg3MDUtYjdmZi00ZDY1LTkyYTgtODlmOGY5N2RjYWUyXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_FMjpg_UX1000_.jpg"
+      "image": "https://m.media-amazon.com/images/M/MV5BZTUxNzg3MDUtYjdmZi00ZDY1LTkyYTgtODlmOGY5N2RjYWUyXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_FMjpg_UX1000_.jpg",
+      "id": "14"
     },
     {
       "id": "15",
@@ -255,6 +247,28 @@
       ],
       "director": "Frank Darabont",
       "image": "https://upload.wikimedia.org/wikipedia/en/e/e2/The_Green_Mile_%28movie_poster%29.jpg"
+    },
+    {
+      "title": "The Godfather",
+      "genre": "crime, drama",
+      "rating": 9.2,
+      "director": "Francis Ford Coppola",
+      "actors": "Marlon Brando, Al Pacino, James Caan",
+      "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
+      "release_date": "1994-10-14",
+      "id": "b151"
+    },
+    {
+      "id": "58a9",
+      "title": "tdhe`rh",
+      "genre": "crime, drama",
+      "rating": 9,
+      "director": "Francis Ford Coppola",
+      "actors": "John Travolta, Uma Thurman, Samuel L. Jackson",
+      "description": "dzthtefxhmsrys",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpeg",
+      "release_date": "2024-07-28"
     }
   ]
 }
