@@ -16,15 +16,18 @@ const EditModal: React.FC<EditModalProps> = ({
   onSave,
 }) => {
   const [editedMovie, setEditedMovie] = useState<Movie | undefined>(movie);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     setEditedMovie(movie);
   }, [movie]);
 
+  const getFieldValue = (field: keyof Movie) => editedMovie?.[field] || "";
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     const newValue = name === "rating" ? parseFloat(value) : value;
-
+    
     if (editedMovie) {
       setEditedMovie({
         ...editedMovie,
@@ -33,8 +36,19 @@ const EditModal: React.FC<EditModalProps> = ({
     }
   };
 
+  const validate = (): boolean => {
+    const newErrors: { [key: string]: string } = {};
+
+    if (!editedMovie?.title) newErrors.title = "Title is required";
+    if (!editedMovie?.rating || editedMovie.rating < 0 || editedMovie.rating > 10)
+      newErrors.rating = "Rating must be between 0 and 10";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSave = () => {
-    if (editedMovie) {
+    if (validate() && editedMovie) {
       onSave(editedMovie);
     }
   };
@@ -65,15 +79,17 @@ const EditModal: React.FC<EditModalProps> = ({
         <TextField
           name="title"
           label="Title"
-          value={editedMovie?.title || ""}
+          value={getFieldValue('title')}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          error={!!errors.title}
+          helperText={errors.title}
         />
         <TextField
           name="genre"
           label="Жанр"
-          value={editedMovie?.genre || ""}
+          value={getFieldValue('genre')}
           onChange={handleChange}
           fullWidth
           margin="normal"
@@ -82,15 +98,17 @@ const EditModal: React.FC<EditModalProps> = ({
         <TextField
           name="rating"
           label="Rating"
-          value={editedMovie?.rating || ""}
+          value={getFieldValue('rating')}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          error={!!errors.rating}
+          helperText={errors.rating}
         />
         <TextField
           name="director"
           label="Director"
-          value={editedMovie?.director || ""}
+          value={getFieldValue('director')}
           onChange={handleChange}
           fullWidth
           margin="normal"
@@ -98,7 +116,15 @@ const EditModal: React.FC<EditModalProps> = ({
         <TextField
           name="actors"
           label="The cast"
-          value={editedMovie?.actors || ""}
+          value={getFieldValue('actors')}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+        />
+        <TextField
+          name="image"
+          label="Image"
+          value={getFieldValue('image')}
           onChange={handleChange}
           fullWidth
           margin="normal"
@@ -106,22 +132,14 @@ const EditModal: React.FC<EditModalProps> = ({
         <TextField
           name="description"
           label="Description"
-          value={editedMovie?.description || ""}
+          value={getFieldValue('description')}
           onChange={handleChange}
           fullWidth
           margin="normal"
           multiline
           rows={5}
         />
-        <TextField
-          name="image"
-          label="Image"
-          value={editedMovie?.image || ""}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
-
+        
         <Button
           onClick={handleSave}
           variant="contained"

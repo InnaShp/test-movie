@@ -1,53 +1,44 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Rating, Typography } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { RootState } from "../store";
 import { Movie } from "../types/Movies";
 import { grey } from "../theme/palette";
 
 import SecondaryButton from "../components/secondaryButton/secondaryButton";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
-import { deleteMovie, editMovie } from "../store/moviesSlice";
 import EditModal from "../components/editModal/editModal";
+import {
+  useDeleteMovieMutation,
+  useGetMovieByIdQuery,
+  useUpdateMovieMutation,
+} from "../rtk/api";
 
 function ProductItem() {
-  const { id } = useParams<{ id: string | undefined }>();
-  const dispatch = useDispatch();
+  const { id } = useParams<{ id: any }>();
   const navigate = useNavigate();
 
-  const movie = useSelector<RootState, Movie | undefined>((state) =>
-    id
-      ? state.movies.movies.find((movie) => movie.id === parseInt(id))
-      : undefined
-  );
+  const [deleteMovie] = useDeleteMovieMutation();
+  const [editMovie] = useUpdateMovieMutation();
+  const { data: movie } = useGetMovieByIdQuery(id);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleEdit = () => {
-    setIsModalOpen(true);
-  };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
 
   const handleSaveEdit = (updatedMovie: Movie) => {
-    dispatch(editMovie({ id: updatedMovie.id, updatedMovie }));
-    setIsModalOpen(false);
+    editMovie(updatedMovie).then(() => handleModalClose());
   };
 
   const handleDelete = () => {
-    if (id) {
-      dispatch(deleteMovie(parseInt(id)));
-    }
-    navigate(-1);
+    deleteMovie(id).then(() => navigate("/"));
   };
 
   if (!movie) {
-    return <div>Loading...</div>;
+    return <div>Can't find the movie</div>;
   }
 
   return (
@@ -116,7 +107,7 @@ function ProductItem() {
         </Box>
       </Box>
       <Box display={"flex"} gap={"30px"} mt={"60px"} justifyContent={"center"}>
-        <SecondaryButton onClick={handleEdit} color="success">
+        <SecondaryButton onClick={() => setIsModalOpen(true)} color="success">
           <EditIcon />
         </SecondaryButton>
         <SecondaryButton onClick={handleDelete} color="error">
