@@ -1,6 +1,7 @@
 {
   "movies": [
     {
+      "id": "1",
       "title": "The Shawshank Redemption",
       "description": "Andy Dufresne, wrongly convicted of murder, ends up in Shawshank prison. There he finds friendship, meaning in life, and a way to gain freedom.",
       "rating": 9.2,
@@ -15,7 +16,7 @@
       ],
       "director": "Frank Darabont",
       "image": "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
-      "id": "1"
+      "favorite": true
     },
     {
       "id": "2",
@@ -33,7 +34,8 @@
         "James Caan"
       ],
       "director": "Francis Ford Coppola",
-      "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
+      "favorite": false
     },
     {
       "id": "3",
@@ -52,7 +54,8 @@
         "Aaron Eckhart"
       ],
       "director": "Christopher Nolan",
-      "image": "https://upload.wikimedia.org/wikipedia/sco/8/83/Dark_knight_rises_poster.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/sco/8/83/Dark_knight_rises_poster.jpg",
+      "favorite": true
     },
     {
       "id": "4",
@@ -70,7 +73,8 @@
         "Martin Balsam"
       ],
       "director": "Sidney Lumet",
-      "image": "https://play-lh.googleusercontent.com/CYoNalDB85ypR2zSCCW8qy_KjAI6znh0CYoG_oB9XJOPuMdZnX-k2pDRKbE57Q38MuYV"
+      "image": "https://play-lh.googleusercontent.com/CYoNalDB85ypR2zSCCW8qy_KjAI6znh0CYoG_oB9XJOPuMdZnX-k2pDRKbE57Q38MuYV",
+      "favorite": true
     },
     {
       "id": "5",
@@ -88,7 +92,8 @@
         "Ralph Fiennes"
       ],
       "director": "Steven Spielberg",
-      "image": "https://upload.wikimedia.org/wikipedia/en/3/38/Schindler%27s_List_movie.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/38/Schindler%27s_List_movie.jpg",
+      "favorite": false
     },
     {
       "title": "Pulp Fiction",
@@ -106,6 +111,7 @@
       ],
       "director": "Quentin Tarantino",
       "image": "https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg",
+      "favorite": true,
       "id": "6"
     },
     {
@@ -124,7 +130,8 @@
         "Ian McKellen"
       ],
       "director": "Peter Jackson",
-      "image": "https://m.media-amazon.com/images/M/MV5BNDgwY2YyNjctZTMxZC00ZTRlLThhN2QtMTAwYjUyODcyZDYxXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_FMjpg_UX1000_.jpg"
+      "image": "https://m.media-amazon.com/images/M/MV5BNDgwY2YyNjctZTMxZC00ZTRlLThhN2QtMTAwYjUyODcyZDYxXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_FMjpg_UX1000_.jpg",
+      "favorite": false
     },
     {
       "id": "8",
@@ -142,7 +149,8 @@
         "Gary Sinise"
       ],
       "director": "Robert Zemeckis",
-      "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg",
+      "favorite": false
     },
     {
       "id": "9",
@@ -160,7 +168,8 @@
         "Helena Bonham Carter"
       ],
       "director": "David Fincher",
-      "image": "https://upload.wikimedia.org/wikipedia/en/f/fc/Fight_Club_poster.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fc/Fight_Club_poster.jpg",
+      "favorite": false
     },
     {
       "id": "10",
@@ -179,7 +188,8 @@
         "Ellen Page"
       ],
       "director": "Christopher Nolan",
-      "image": "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg",
+      "favorite": false
     },
     {
       "id": "11",
@@ -197,7 +207,8 @@
         "Carrie-Anne Moss"
       ],
       "director": "The Wachowskis",
-      "image": "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg",
+      "favorite": false
     },
     {
       "id": "12",
@@ -216,7 +227,8 @@
         "Joe Pesci"
       ],
       "director": "Martin Scorsese",
-      "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Goodfellas.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Goodfellas.jpg",
+      "favorite": false
     },
     {
       "title": "eg`rhs`w",
@@ -227,6 +239,7 @@
       "actors": "John Travolta, Uma Thurman, Samuel L. Jackson",
       "director": "Peter Jackson",
       "image": "https://m.media-amazon.com/images/M/MV5BZTUxNzg3MDUtYjdmZi00ZDY1LTkyYTgtODlmOGY5N2RjYWUyXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_FMjpg_UX1000_.jpg",
+      "favorite": false,
       "id": "14"
     },
     {
@@ -245,6 +258,7 @@
         "Michael Clarke Duncan",
         "David Morse"
       ],
+      "favorite": false,
       "director": "Frank Darabont",
       "image": "https://upload.wikimedia.org/wikipedia/en/e/e2/The_Green_Mile_%28movie_poster%29.jpg"
     },
@@ -257,7 +271,8 @@
       "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
       "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
       "release_date": "1994-10-14",
-      "id": "b151"
+      "id": "b151",
+      "favorite": false
     },
     {
       "id": "58a9",
@@ -268,7 +283,8 @@
       "actors": "John Travolta, Uma Thurman, Samuel L. Jackson",
       "description": "dzthtefxhmsrys",
       "image": "https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpeg",
-      "release_date": "2024-07-28"
+      "release_date": "2024-07-28",
+      "favorite": false
     }
   ]
 }

@@ -19,6 +19,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
     description: "",
     image: "",
     release_date: "",
+    favorite: false,
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -50,6 +51,7 @@ const AddModal: React.FC<AddModalProps> = ({ isOpen, onClose, onSave }) => {
         description: "",
         image: "",
         release_date: "",
+        favorite: false
       });
     }
   };

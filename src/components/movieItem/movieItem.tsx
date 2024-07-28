@@ -11,25 +11,30 @@ import {
 import { Movie } from "../../types/Movies";
 import { Link } from "react-router-dom";
 
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useToggleFavoriteMutation } from "../../rtk/api";
 
-interface MovieItemProps {
-  movie: Movie;
-  isFavorite?: boolean;
-  onToggleFavorite?: (movie: Movie) => void;
-}
-export default function MovieItem({
-  movie,
-  isFavorite,
-  onToggleFavorite,
-}: MovieItemProps) {
+export default function MovieItem({ movie }: { movie: Movie }) {
+  const [toggleFavorite] = useToggleFavoriteMutation();
   const releaseYear = new Date(movie.release_date).getFullYear();
-
   const trimmedTitle =
     movie.title.length > 25
       ? movie.title.substring(0, 25) + "..."
       : movie.title;
+  const handleToggleFavorite = async ({
+    id,
+    isFavorite,
+  }: {
+    id: string;
+    isFavorite: boolean;
+  }) => {
+    try {
+      await toggleFavorite({ id, isFavorite: !isFavorite });
+    } catch (error) {
+      console.error("Failed to toggle favorite", error);
+    }
+  };
 
   return (
     <Card sx={{ width: "300px", height: "560px", margin: "0 auto" }}>
@@ -59,15 +64,23 @@ export default function MovieItem({
           <Typography variant="body2">{movie.rating}</Typography>
         </Box>
       </CardContent>
-      <CardActions sx={{ paddingTop: "0", display:"flex", justifyContent: "space-between" }}>
+      <CardActions
+        sx={{
+          paddingTop: "0",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <Link to={`/movies/${movie.id}`} style={{ textDecoration: "none" }}>
           <Button color="primary">Read more</Button>
         </Link>
         <Button
-          color={isFavorite ? "error" : "primary"}
-          onClick={() => onToggleFavorite && onToggleFavorite(movie)}
+          color={movie.favorite ? "error" : "primary"}
+          onClick={() =>
+            handleToggleFavorite({ id: movie.id, isFavorite: movie.favorite })
+          }
         >
-          {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          {movie.favorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </Button>
       </CardActions>
     </Card>

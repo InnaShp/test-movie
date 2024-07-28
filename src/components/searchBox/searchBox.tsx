@@ -4,9 +4,7 @@ import { Box } from "@mui/material";
 import { grey } from "../../theme/palette";
 
 import SearchIcon from '@mui/icons-material/Search';
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { setSearchText } from "../../store/moviesSlice";
+import { useState } from "react";
 
 const StyledSearchBox = styled("div")(() => ({
   width: "70%",
@@ -20,11 +18,9 @@ const StyledSearchBox = styled("div")(() => ({
 }));
 
 export default function SearchBox() {
-  const dispatch = useDispatch(); 
-  const searchText = useSelector((state: RootState) => state.movies.searchText); 
-
+  const [searchText, setSearchText] = useState("");
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearchText(event.target.value));
+    setSearchText(event.target.value);
   };
 
   return (

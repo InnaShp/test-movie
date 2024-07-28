@@ -2,10 +2,12 @@ import { Box, Grid, Typography } from "@mui/material";
 import { grey } from "../theme/palette";
 import { Movie } from "../types/Movies";
 import MovieItem from "../components/movieItem/movieItem";
-import { useFavorites } from "../hooks/useFavourites";
+import { useGetFavoriteMoviesQuery } from "../rtk/api";
 
 export default function Favourites() {
-  const { favoriteMovies, isFavorite, toggleFavorite } = useFavorites();
+  const { data } = useGetFavoriteMoviesQuery();
+  const favoriteMovies = data ?? [];
+
   return (
     <Box
       sx={{
@@ -22,11 +24,7 @@ export default function Favourites() {
       <Grid container spacing={2}>
         {favoriteMovies.map((item: Movie) => (
           <Grid item xs={12} md={6} lg={4} key={item.id}>
-            <MovieItem 
-              movie={item} 
-              isFavorite={isFavorite(item)} 
-              onToggleFavorite={toggleFavorite} 
-            />
+            <MovieItem movie={item} />
           </Grid>
         ))}
       </Grid>

@@ -7,6 +7,7 @@ export interface BaseMovie {
   actors: string[];
   director: string;
   image: string;
+  favorite: boolean;
 }
 
 export interface Movie extends BaseMovie {
