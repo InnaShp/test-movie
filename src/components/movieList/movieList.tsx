@@ -9,8 +9,6 @@ export default function MovieList() {
   const { data } = useGetMoviesQuery();
   const filteredMovies = data ?? [];
 
-  // const { isFavorite, toggleFavorite } = useFavorites();
-
   // const filteredMovies = movies.filter((movie: Movie) => {
   //   return movie.title.toLowerCase().includes(searchText.toLowerCase());
   // });

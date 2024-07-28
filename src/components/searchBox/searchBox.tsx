@@ -19,6 +19,7 @@ const StyledSearchBox = styled("div")(() => ({
 
 export default function SearchBox() {
   const [searchText, setSearchText] = useState("");
+  
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
   };

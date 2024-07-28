@@ -35,13 +35,12 @@
       ],
       "director": "Francis Ford Coppola",
       "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
-      "favorite": false
+      "favorite": true
     },
     {
-      "id": "3",
       "title": "The Dark Knight",
       "description": "Bruce Wayne faces a new challenge - The Joker, who seeks to plunge Gotham into chaos.",
-      "rating": 9,
+      "rating": 7,
       "release_date": "2008-07-18",
       "genre": [
         "action",
@@ -55,7 +54,8 @@
       ],
       "director": "Christopher Nolan",
       "image": "https://upload.wikimedia.org/wikipedia/sco/8/83/Dark_knight_rises_poster.jpg",
-      "favorite": true
+      "favorite": false,
+      "id": "3"
     },
     {
       "id": "4",
@@ -74,7 +74,7 @@
       ],
       "director": "Sidney Lumet",
       "image": "https://play-lh.googleusercontent.com/CYoNalDB85ypR2zSCCW8qy_KjAI6znh0CYoG_oB9XJOPuMdZnX-k2pDRKbE57Q38MuYV",
-      "favorite": true
+      "favorite": false
     },
     {
       "id": "5",
@@ -111,7 +111,7 @@
       ],
       "director": "Quentin Tarantino",
       "image": "https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg",
-      "favorite": true,
+      "favorite": false,
       "id": "6"
     },
     {
@@ -285,6 +285,18 @@
       "image": "https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpeg",
       "release_date": "2024-07-28",
       "favorite": false
+    },
+    {
+      "title": "aaa",
+      "genre": "crime, drama",
+      "rating": 2,
+      "director": "Francis Ford Coppola",
+      "actors": "John Travolta, Uma Thurman, Samuel L. Jackson",
+      "description": "weGwhrt5stykt",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
+      "release_date": "2024-07-25",
+      "favorite": false,
+      "id": "6a99"
     }
   ]
 }

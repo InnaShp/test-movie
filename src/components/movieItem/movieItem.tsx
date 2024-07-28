@@ -17,11 +17,13 @@ import { useToggleFavoriteMutation } from "../../rtk/api";
 
 export default function MovieItem({ movie }: { movie: Movie }) {
   const [toggleFavorite] = useToggleFavoriteMutation();
+
   const releaseYear = new Date(movie.release_date).getFullYear();
   const trimmedTitle =
     movie.title.length > 25
       ? movie.title.substring(0, 25) + "..."
       : movie.title;
+
   const handleToggleFavorite = async ({
     id,
     isFavorite,
@@ -29,8 +31,9 @@ export default function MovieItem({ movie }: { movie: Movie }) {
     id: string;
     isFavorite: boolean;
   }) => {
+    const updateConfig = {};
     try {
-      await toggleFavorite({ id, isFavorite: !isFavorite });
+      await toggleFavorite({ id, isFavorite: !isFavorite, updateConfig }).unwrap();
     } catch (error) {
       console.error("Failed to toggle favorite", error);
     }

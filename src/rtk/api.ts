@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Movie } from "../types/Movies";
+import { current } from "@reduxjs/toolkit";
 
 const BESE_URL = "http://localhost:3001/";
 
@@ -79,13 +80,13 @@ export const movieApi = createApi({
       invalidatesTags: (result, error, { id }) => [{ type: 'Movies', id }]
     }),
 
-    toggleFavorite: build.mutation<Movie, { id: string; isFavorite: boolean }>({
+    toggleFavorite: build.mutation<Movie, { id: string; isFavorite: boolean; updateConfig: any }>({
       query: ({ id, isFavorite }) => ({
         url: `movies/${id}`,
         method: 'PATCH',
         body: { favorite: isFavorite }
       }),
-      async onQueryStarted({ id, isFavorite }, { dispatch, queryFulfilled }) {
+      async onQueryStarted({ id, isFavorite, updateConfig }, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(
           movieApi.util.updateQueryData('getMovieById', id, (draft) => {
             draft.favorite = isFavorite;
@@ -100,7 +101,7 @@ export const movieApi = createApi({
       invalidatesTags: (result, error, { id }) => [
         { type: 'Movies', id },
         { type: 'Movies', id: 'LIST' },
-        { type: 'Movies', id: 'FAVORITES' }
+        { type: 'Movies', id: 'FAVORITE' }
       ]
     })
   })

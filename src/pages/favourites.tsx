@@ -6,6 +6,7 @@ import { useGetFavoriteMoviesQuery } from "../rtk/api";
 
 export default function Favourites() {
   const { data } = useGetFavoriteMoviesQuery();
+  
   const favoriteMovies = data ?? [];
 
   return (
