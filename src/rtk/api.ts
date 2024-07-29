@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Movie } from "../types/Movies";
-import { current } from "@reduxjs/toolkit";
 
 const BESE_URL = "http://localhost:3001/";
 
@@ -11,8 +10,8 @@ export const movieApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BESE_URL }),
   tagTypes: ['Movies'],
   endpoints: (build) => ({
-    getMovies: build.query<MoviesResponse, void>({
-      query: () => 'movies',
+    getMovies: build.query<MoviesResponse, string | void>({
+      query: (searchText) => searchText ? `movies?title_like=${searchText}` : 'movies',
       providesTags: (result) =>
         result ?
           [

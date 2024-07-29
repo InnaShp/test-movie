@@ -3,8 +3,7 @@ import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import { grey } from "../../theme/palette";
 
-import SearchIcon from '@mui/icons-material/Search';
-import { useState } from "react";
+import SearchIcon from "@mui/icons-material/Search";
 
 const StyledSearchBox = styled("div")(() => ({
   width: "70%",
@@ -14,12 +13,15 @@ const StyledSearchBox = styled("div")(() => ({
   height: "40px",
   borderRadius: "8px",
   backgroundColor: "white",
-  border: `2px solid ${grey[300]}`
+  border: `2px solid ${grey[300]}`,
 }));
 
-export default function SearchBox() {
-  const [searchText, setSearchText] = useState("");
-  
+interface SearchBoxProps {
+  setSearchText: (value: string) => void;
+  searchText: string;
+}
+
+export default function SearchBox({ setSearchText, searchText }: SearchBoxProps) {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
   };
@@ -30,7 +32,7 @@ export default function SearchBox() {
         sx={{
           paddingLeft: "16px",
           display: "flex",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <SearchIcon />

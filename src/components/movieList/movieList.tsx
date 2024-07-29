@@ -1,32 +1,26 @@
 import MovieItem from "../movieItem/movieItem";
 import { Movie } from "../../types/Movies";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useGetMoviesQuery } from "../../rtk/api";
 
-export default function MovieList() {
-  //const searchText = useSelector((state: RootState) => state.movies.searchText);
+export default function MovieList({ searchText }: { searchText: string }) {
+  const { data } = useGetMoviesQuery(searchText);
+  const movies = data ?? [];
 
-  const { data } = useGetMoviesQuery();
-  const filteredMovies = data ?? [];
-
-  // const filteredMovies = movies.filter((movie: Movie) => {
-  //   return movie.title.toLowerCase().includes(searchText.toLowerCase());
-  // });
-
-  // if (filteredMovies.length === 0) {
-  //   return (
-  //     <Box padding={"0 30px"} textAlign={"center"}>
-  //       <Typography variant="h3">
-  //         Oops, no movies found matching your search 🥲
-  //       </Typography>
-  //     </Box>
-  //   );
-  // }
+  if (movies.length === 0) {
+    return (
+      <Box padding={"0 30px"} textAlign={"center"}>
+        <Typography variant="h3">
+          Oops, no movies 🥲
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
     <Box padding={4}>
       <Grid container spacing={3}>
-        {filteredMovies.map((item: Movie) => (
+        {movies.map((item: Movie) => (
           <Grid item xs={12} md={6} lg={4} key={item.id} minWidth={"320px"}>
             <MovieItem movie={item} />
           </Grid>

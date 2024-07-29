@@ -35,7 +35,7 @@
       ],
       "director": "Francis Ford Coppola",
       "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
-      "favorite": true
+      "favorite": false
     },
     {
       "title": "The Dark Knight",
@@ -263,18 +263,6 @@
       "image": "https://upload.wikimedia.org/wikipedia/en/e/e2/The_Green_Mile_%28movie_poster%29.jpg"
     },
     {
-      "title": "The Godfather",
-      "genre": "crime, drama",
-      "rating": 9.2,
-      "director": "Francis Ford Coppola",
-      "actors": "Marlon Brando, Al Pacino, James Caan",
-      "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
-      "release_date": "1994-10-14",
-      "id": "b151",
-      "favorite": false
-    },
-    {
       "id": "58a9",
       "title": "tdhe`rh",
       "genre": "crime, drama",
@@ -285,18 +273,6 @@
       "image": "https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpeg",
       "release_date": "2024-07-28",
       "favorite": false
-    },
-    {
-      "title": "aaa",
-      "genre": "crime, drama",
-      "rating": 2,
-      "director": "Francis Ford Coppola",
-      "actors": "John Travolta, Uma Thurman, Samuel L. Jackson",
-      "description": "weGwhrt5stykt",
-      "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
-      "release_date": "2024-07-25",
-      "favorite": false,
-      "id": "6a99"
     }
   ]
 }
