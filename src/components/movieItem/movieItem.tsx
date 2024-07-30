@@ -14,8 +14,9 @@ import { Link } from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useToggleFavoriteMutation } from "../../rtk/api";
+import { memo } from "react";
 
-export default function MovieItem({ movie }: { movie: Movie }) {
+function MovieItem({ movie }: { movie: Movie }) {
   const [toggleFavorite] = useToggleFavoriteMutation();
 
   const releaseYear = new Date(movie.release_date).getFullYear();
@@ -89,3 +90,5 @@ export default function MovieItem({ movie }: { movie: Movie }) {
     </Card>
   );
 }
+
+export default memo(MovieItem);

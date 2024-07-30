@@ -3,19 +3,35 @@ import { Movie } from "../types/Movies";
 
 const BESE_URL = "http://localhost:3001/";
 
-type MoviesResponse = Movie[];
+interface MoviesResponse {
+  data: Movie[];
+  total: number;
+}
+
+interface MovieParams {
+  limit: number;
+  page: number;
+  searchText?: string;
+}
 
 export const movieApi = createApi({
   reducerPath: 'movieApi',
   baseQuery: fetchBaseQuery({ baseUrl: BESE_URL }),
   tagTypes: ['Movies'],
   endpoints: (build) => ({
-    getMovies: build.query<MoviesResponse, string | void>({
-      query: (searchText) => searchText ? `movies?title_like=${searchText}` : 'movies',
+    getMovies: build.query<MoviesResponse, MovieParams>({
+      query: ({ page, limit, searchText }) => {
+        const searchTextQuery = searchText && `&title_like=${searchText}`;
+        return `movies?_page=${page}&_limit=${limit}${searchTextQuery}`;
+      },
+      transformResponse: (response: Movie[], meta) => ({
+        data: response,
+        total: Number(meta?.response?.headers.get('X-Total-Count') || 0),
+      }),
       providesTags: (result) =>
         result ?
           [
-            ...result.map(({ id }) => ({ type: 'Movies', id } as const)),
+            ...result.data.map(({ id }) => ({ type: 'Movies', id } as const)),
             { type: 'Movies', id: 'LIST' },
           ]
           :
@@ -26,12 +42,16 @@ export const movieApi = createApi({
       query: (id) => `movies/${id}`,
     }),
 
-    getFavoriteMovies: build.query<MoviesResponse, void>({
-      query: () => 'movies?favorite=true',
+    getFavoriteMovies: build.query<MoviesResponse, MovieParams>({
+      query: ({ page, limit }) => `movies?_page=${page}&_limit=${limit}&favorite=true`,
+      transformResponse: (response: Movie[], meta) => ({
+        data: response,
+        total: Number(meta?.response?.headers.get('X-Total-Count') || 0),
+      }),
       providesTags: (result) =>
         result ?
           [
-            ...result.map(({ id }) => ({ type: 'Movies', id } as const)),
+            ...result.data.map(({ id }) => ({ type: 'Movies', id } as const)),
             { type: 'Movies', id: 'FAVORITE' },
           ]
           :

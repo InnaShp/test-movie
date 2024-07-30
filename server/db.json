@@ -16,7 +16,7 @@
       ],
       "director": "Frank Darabont",
       "image": "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
-      "favorite": true
+      "favorite": false
     },
     {
       "id": "2",
@@ -74,7 +74,7 @@
       ],
       "director": "Sidney Lumet",
       "image": "https://play-lh.googleusercontent.com/CYoNalDB85ypR2zSCCW8qy_KjAI6znh0CYoG_oB9XJOPuMdZnX-k2pDRKbE57Q38MuYV",
-      "favorite": false
+      "favorite": true
     },
     {
       "id": "5",
@@ -93,7 +93,7 @@
       ],
       "director": "Steven Spielberg",
       "image": "https://upload.wikimedia.org/wikipedia/en/3/38/Schindler%27s_List_movie.jpg",
-      "favorite": false
+      "favorite": true
     },
     {
       "title": "Pulp Fiction",
@@ -111,7 +111,7 @@
       ],
       "director": "Quentin Tarantino",
       "image": "https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg",
-      "favorite": false,
+      "favorite": true,
       "id": "6"
     },
     {
@@ -150,7 +150,7 @@
       ],
       "director": "Robert Zemeckis",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg",
-      "favorite": false
+      "favorite": true
     },
     {
       "id": "9",
@@ -239,7 +239,7 @@
       "actors": "John Travolta, Uma Thurman, Samuel L. Jackson",
       "director": "Peter Jackson",
       "image": "https://m.media-amazon.com/images/M/MV5BZTUxNzg3MDUtYjdmZi00ZDY1LTkyYTgtODlmOGY5N2RjYWUyXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_FMjpg_UX1000_.jpg",
-      "favorite": false,
+      "favorite": true,
       "id": "14"
     },
     {
@@ -258,7 +258,7 @@
         "Michael Clarke Duncan",
         "David Morse"
       ],
-      "favorite": false,
+      "favorite": true,
       "director": "Frank Darabont",
       "image": "https://upload.wikimedia.org/wikipedia/en/e/e2/The_Green_Mile_%28movie_poster%29.jpg"
     },
@@ -272,7 +272,7 @@
       "description": "dzthtefxhmsrys",
       "image": "https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpeg",
       "release_date": "2024-07-28",
-      "favorite": false
+      "favorite": true
     }
   ]
 }
